@@ -1,0 +1,33 @@
+import 'package:bloc/bloc.dart';
+class CounterCubit extends Cubit<int>{
+  CounterCubit() : super(0);
+  void increment() => emit(state + 1);
+  void decrement() => emit(state - 1);
+}
+void main(List<String> args){
+  final cubit = CounterCubit();
+  print(cubit.state);// !shold print 0 = the default state of the counter
+
+  cubit.increment();
+
+  print(cubit.state);// !should print 1
+
+  cubit.increment();
+
+  print(cubit.state);// !should print 2
+
+  cubit.decrement();// !should print 1
+  cubit.close();
+
+
+
+
+}
+
+Output:
+Performing hot restart...
+Syncing files to device AOSP on IA Emulator...
+Restarted application in 170ms.
+I/flutter ( 5575): 0
+I/flutter ( 5575): 1
+I/flutter ( 5575): 2
