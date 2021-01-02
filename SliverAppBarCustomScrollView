@@ -1,0 +1,67 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_basic/screen/Screenone.dart';
+
+
+void main() {
+  runApp(MyApp());
+}class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          color: Colors.green,
+        ),
+        scaffoldBackgroundColor: Colors.white,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: HomePage(),
+    );
+  }
+}
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Image.asset('images/sliver.jpg',fit: BoxFit.cover),
+                  title: Text("Flutter Sliver Appbar"),
+                ),
+                expandedHeight: 180.00,
+                leading: IconButton(
+                    icon: Icon(Icons.arrow_back_ios),
+                    onPressed: () {}
+                ),
+              ),
+              SliverFixedExtentList(
+                  delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index){
+                          return Card(
+                            child: ListTile(
+                              title: Text("Flutter Topics Number $index"),
+                              subtitle: Text('Manufacture Number $index'),
+                              trailing: CircleAvatar(backgroundImage: AssetImage('images/sliver.jpg'),),
+                            ),
+                          );
+                      }
+                  ),
+                  itemExtent: 100.0)
+
+            ],
+
+
+      )
+    );
+  }
+}
